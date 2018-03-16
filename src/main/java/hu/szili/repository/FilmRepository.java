@@ -16,4 +16,9 @@ public interface FilmRepository extends CrudRepository<Film,Integer>{
     public Film findById(int id);
     //public List<Film> saveAll(List<Film> films);
 
+  /*  @Query(value = "select * from story where title = ?1 limit 1", nativeQuery = true)
+	@Query(value = "select * from story where title = :title limit 1", nativeQuery = true)
+    @Query(value = "select s from Story s where s.title = :title")
+    Story findByTitle(@Param("title") String title);
+*/
 }
