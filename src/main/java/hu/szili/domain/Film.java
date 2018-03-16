@@ -1,5 +1,7 @@
 package hu.szili.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.HashSet;
@@ -19,14 +21,18 @@ public class Film {
     String cim;
     @NotNull
     Integer hossz;
+    @JsonBackReference
+    @OneToMany(mappedBy = "film")
+    private Set<Vetites> vetitesek;
 
     private Film() {
 
     }
 
-    public Film(@NotNull String cim, @NotNull Integer hossz) {
+    public Film(@NotNull String cim, @NotNull Integer hossz, Set<Vetites> vetitesek) {
         this.cim = cim;
         this.hossz = hossz;
+        this.vetitesek = vetitesek;
     }
 
     public Integer getId() {
@@ -51,6 +57,19 @@ public class Film {
 
     public void setHossz(Integer hossz) {
         this.hossz = hossz;
+    }
+
+    public Set<Vetites> getVetitesek() {
+        return vetitesek;
+    }
+
+    public void setVetitesek(Set<Vetites> vetitesek) {
+        this.vetitesek = vetitesek;
+    }
+
+    public Film setVetites(Vetites vetites){
+       this.vetitesek.add(vetites);
+       return this;
     }
 
 }

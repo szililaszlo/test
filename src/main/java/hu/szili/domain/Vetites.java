@@ -13,20 +13,20 @@ public class Vetites {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @JoinColumn(name = "film_id",nullable=false)
-    private Integer filmId;
+    //@JoinColumn(name = "film_id",nullable=false)
+    //private Integer filmId;
     private String kezdes;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private Set<Film> filmek = new HashSet<>();
+    @ManyToOne
+    private Film film;
 
     private Vetites() {
 
     }
 
-    public Vetites(Integer filmId, String kezdes) {
-        this.filmId = filmId;
+    public Vetites(String kezdes, Film film) {
         this.kezdes = kezdes;
+        this.film = film;
     }
 
     public Integer getId() {
@@ -37,19 +37,19 @@ public class Vetites {
         this.id = id;
     }
 
-    public Integer getFilmId() {
-        return filmId;
-    }
-
-    public void setFilmId(Integer filmId) {
-        this.filmId = filmId;
-    }
-
     public String getKezdes() {
         return kezdes;
     }
 
     public void setKezdes(String kezdes) {
         this.kezdes = kezdes;
+    }
+
+    public Film getFilm() {
+        return film;
+    }
+
+    public void setFilm(Film film) {
+        this.film = film;
     }
 }

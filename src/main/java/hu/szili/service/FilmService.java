@@ -35,4 +35,10 @@ public class FilmService {
         return filmRepository.saveAll(films);
     }
 
+    public Film addVetites(int id, Film film) {
+        Film oldFilm = filmRepository.findById(id);
+        oldFilm.setVetitesek(film.getVetitesek());
+        return filmRepository.save(oldFilm);
+    }
+
 }

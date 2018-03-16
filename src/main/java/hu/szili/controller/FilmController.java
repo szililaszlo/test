@@ -39,6 +39,11 @@ public class FilmController {
         return filmService.saveAllFilm(films);
     }
 
+    @RequestMapping(value = "/show/{id}",method = RequestMethod.PUT)
+    public Film addVetites(@RequestBody Film film, @PathVariable(value = "id") int id) {
+        return filmService.addVetites(id,film);
+    }
+
 
 
 }
